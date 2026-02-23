@@ -1,5 +1,9 @@
 package MySetupTest;
 
+import java.awt.Desktop.Action;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.Duration;
 import java.util.List;
 import java.util.Random;
@@ -18,7 +22,10 @@ import org.testng.annotations.Test;
 
 public class HomePage extends TestElement{
 	
-
+	
+	Connection con;
+	Statement stmt;
+	ResultSet rs;
 	
 	@BeforeTest
 
@@ -27,8 +34,8 @@ public class HomePage extends TestElement{
 }
 	
 
-	@Test(priority = 1,enabled = true)
-	public void MyTese() throws InterruptedException {
+	@Test(priority = 1,enabled = false)
+	public void Signup() throws InterruptedException {
 	
 		WebElement Loginorregister=driver.findElement(By.linkText("Login or register"));
 		Loginorregister.click();
@@ -80,8 +87,65 @@ public class HomePage extends TestElement{
 	
 	}
 	
-
-	@Test(priority = 2,enabled = true)
+	@Test(priority = 1,enabled = false)
+	public void SignupWithDatabase() throws InterruptedException {
+	
+		WebElement Loginorregister=driver.findElement(By.linkText("Login or register"));
+		Loginorregister.click();
+		
+		WebElement CountineButton=driver.findElement(By.xpath("//button[@title='Continue']"));
+		CountineButton.click();
+		
+		// elements
+		WebElement FirstNInput=driver.findElement(By.id("AccountFrm_firstname"));
+		WebElement LastNInput=driver.findElement(By.id("AccountFrm_lastname"));
+		WebElement InputEmail=driver.findElement(By.id("AccountFrm_email"));
+		WebElement AddressInput=driver.findElement(By.id("AccountFrm_address_1"));
+		WebElement CountryInput=driver.findElement(By.id("AccountFrm_country_id"));
+		WebElement ZoneStateInput = driver.findElement(By.id("AccountFrm_zone_id"));
+		WebElement CityInput = driver.findElement(By.id("AccountFrm_city"));
+		WebElement PostalInput = driver.findElement(By.id("AccountFrm_postcode"));
+		WebElement LoginName=driver.findElement(By.id("AccountFrm_loginname"));
+		WebElement PasswordInp=driver.findElement(By.id("AccountFrm_password"));
+		WebElement ConfirmPasswordp=driver.findElement(By.id("AccountFrm_confirm"));
+		WebElement AgreeAcount=driver.findElement(By.id("AccountFrm_agree"));
+		WebElement CountinueButton = driver.findElement(By.cssSelector(".btn.btn-orange.pull-right.lock-on-click"));
+		
+		/*
+		// Actions 
+		FirstNInput.sendKeys(randfirst);
+		LastNInput.sendKeys(randlast);
+		InputEmail.sendKeys(TheEmail);
+		AddressInput.sendKeys("Amman");
+		Select CountrySelect=new Select(CountryInput);
+		CountrySelect.selectByValue("108");
+		Thread.sleep(3000);
+		int randzone = rand.nextInt(ZoneStateInput.findElements(By.tagName("option")).size());
+		Select InputState = new Select(ZoneStateInput);
+		InputState.selectByIndex(randzone);
+		CityInput.sendKeys("RandomCity");
+		PostalInput.sendKeys("randomPostal");
+		LoginName.sendKeys(randfirst+randlast+NumInput);
+		PasswordInp.sendKeys(PassWL);
+		ConfirmPasswordp.sendKeys(PassWL);
+		AgreeAcount.click();
+		CountinueButton.click();
+		
+		
+		// Assertion 
+		Assert.assertEquals(driver.getCurrentUrl().contains("success"), true);
+		Assert.assertEquals(driver.getPageSource().contains("Congratulations"), true);
+		WebElement WelcomeMessageArea = driver.findElement(By.id("customernav"));
+		//Assert.assertEquals(WelcomeMessageArea.getText().contains(randomFirstName), true);*/
+	
+	}
+	
+	
+	
+	
+	
+	
+	@Test(priority = 2,enabled = false)
 	public void Logout() {
 
    driver.navigate().to("https://automationteststore.com/index.php?rt=account/logout");
@@ -94,7 +158,7 @@ public class HomePage extends TestElement{
    		
 	}
 	
-	@Test(priority = 3,enabled = true)
+	@Test(priority = 3,enabled = false)
 	public void Login() throws InterruptedException {
 
 		Thread.sleep(5000);
@@ -121,7 +185,7 @@ public class HomePage extends TestElement{
 	
 	
 	
-	@Test(priority = 4)
+	@Test(priority = 4,enabled = false)
 	public void AddToCart() {
    		
 		driver.navigate().to("https://automationteststore.com/");
@@ -141,7 +205,7 @@ public class HomePage extends TestElement{
         
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 5,enabled = false)
 	public void CheckOut() throws InterruptedException {
    		
 		WebElement CheckOutButton=driver.findElement(By.id("cart_checkout1"));
